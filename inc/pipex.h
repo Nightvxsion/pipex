@@ -21,4 +21,8 @@
 # include <string.h>
 # include "../libft/libft.h"
 
+//UTILS
+char	*look_for_path(char *cmd, char **envp);
+void	disp_error(void);
+void	exec(char *argv, char **envp);
 #endif
