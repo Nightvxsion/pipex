@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightvision <nightvision@student.42.fr>    +#+  +:+       +#+        */
+/*   By: marcgar2 <marcgar2@student.42madrid.org    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 22:19:07 by nightvision       #+#    #+#             */
-/*   Updated: 2025/02/01 22:36:13 by nightvision      ###   ########.fr       */
+/*   Updated: 2025/02/06 22:15:23 by marcgar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,18 @@ void	exec(char *argv, char **envp)
 	}
 	if (execve(path, command, envp) == -1) //Si en el momento de la ejecucion del PATH, comando y ENVP hay un err
 		disp_error();
+}
+
+void	check_pipe(int argc, int fd[2])
+{
+	if (argc < 6) //Si hay menos de 6 argumentos o esta "mal usado"
+	{
+		use();
+		exit(EXIT_FAILURE);
+	}
+	if (pipe(fd) == -1) //SI la pipe encuentra un error
+	{
+		disp_error();
+		exit(EXIT_FAILURE);
+	}
 }
