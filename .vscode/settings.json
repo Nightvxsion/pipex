@@ -5,7 +5,10 @@
     "wait.h": "c",
     "waitstatus.h": "c",
     "libft.h": "c",
-    "fcntl.h": "c"
+    "fcntl.h": "c",
+    "siginfo_t.h": "c",
+    "__sigval_t.h": "c",
+    "siginfo-arch.h": "c"
   },
   "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.cCompilerPath": "gcc",

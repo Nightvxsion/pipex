@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcgar2 <marcgar2@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: marcgar2 <marcgar2@student.42madrid.org    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 23:06:31 by marcgar2          #+#    #+#             */
-/*   Updated: 2025/02/02 23:20:42 by marcgar2         ###   ########.fr       */
+/*   Updated: 2025/02/06 08:51:57 by marcgar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	open_file_mode(char *argv, int i)
 	else if (i == 1)
 		file = open(argv, O_WRONLY | O_CREAT | O_TRUNC, 0777); // La informacion SE BORRA Y SE PONE (O_TRUNC) la nueva
 	else if (i == 2)
-		file = open(argv, O_RDONLY, 0777);
+		file = open(argv, O_RDONLY, 0777); // Si es 2, entonces el archivo solo se lee
 	if (i == -1)
 		disp_error();
 	return (file);
