@@ -12,12 +12,6 @@
 
 #include "libft.h"
 
-static char	to_upper(unsigned int index, char c)
-{
-	if (islower(c))
-		return (c - 32);
-	return (c);
-}
 
 char	*ft_strmapi(char *s, char (*f)(unsigned int, char))
 {
