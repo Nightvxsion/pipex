@@ -6,7 +6,7 @@
 /*   By: marcgar2 <marcgar2@student.42madrid.org    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 08:55:28 by marcgar2          #+#    #+#             */
-/*   Updated: 2025/02/06 22:29:53 by marcgar2         ###   ########.fr       */
+/*   Updated: 2025/02/09 21:43:24 by marcgar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	child_bonus(char *argv, char **envp)
 
 void	here_doc(char *lim, int argc) //ALgo parecido al split, pero el lim es el END
 {
-	pid_t	*process; //El PID del proceso hijo
+	pid_t	process; //El PID del proceso hijo
 	int		fd[2]; //Los dos extremos del pipe
 	char	*line; //Para el here_doc
 	
@@ -46,7 +46,7 @@ void	here_doc(char *lim, int argc) //ALgo parecido al split, pero el lim es el E
 	if (process == 0)
 	{
 		close(fd[0]); //Cerramos el otro extremo ya que solo escribimos en la parte final
-		while (get_next_line(&line))
+		while (get_next_line((char **)line))
 		{
 			if(ft_strncmp(lim, line, ft_strlen(line)) == 0) //Si lo que haya en la linea ES el delimitador (== 0)
 				exit(EXIT_SUCCESS);
