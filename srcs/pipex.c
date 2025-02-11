@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nightvision <nightvision@student.42.fr>    +#+  +:+       +#+        */
+/*   By: marcgar2 <marcgar2@student.42madrid.org    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 22:06:30 by nightvision       #+#    #+#             */
-/*   Updated: 2025/02/01 22:36:13 by nightvision      ###   ########.fr       */
+/*   Updated: 2025/02/11 07:56:40 by marcgar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,29 @@ void	parents(char **argv, char **envp, int *fd)
 	dup2(output, STDIN_FILENO);
 	close(fd[1]);
 	exec(argv[3], envp);
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	int		fd[2]; //FD al que actua
+	pid_t	pid_proc; //PID del proceso
+
+	if (argc == 5)
+	{
+		if (pipe(fd) == -1) //Si al hacer la pipe del fd da error
+			disp_error();
+		pid_proc = fork(); //Hacer el proceso hijo
+		if (pid_proc == -1)
+			disp_error();
+		if (pid_proc == 0)
+			childs(argv, envp, fd);
+		waitpid(pid_proc, NULL, 0);
+		parents(argv, envp, fd);
+	}
+	else
+	{
+		ft_putstr_fd("\e[1;31mBAD ARGUMENT!\n\e[0m", 2);
+		ft_putstr_fd("Use: ./pipex <file1> <cmd1> <cmd2> <file2>\n", 1);
+	}
+	return (0);
 }

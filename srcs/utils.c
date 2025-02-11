@@ -6,7 +6,7 @@
 /*   By: marcgar2 <marcgar2@student.42madrid.org    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 22:19:07 by nightvision       #+#    #+#             */
-/*   Updated: 2025/02/06 22:15:23 by marcgar2         ###   ########.fr       */
+/*   Updated: 2025/02/11 08:04:07 by marcgar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,12 @@ void	check_pipe(int argc, int fd[2])
 		disp_error();
 		exit(EXIT_FAILURE);
 	}
+}
+
+void	use(void)
+{
+	ft_putstr_fd("\e[1;31mBAD ARGUMENT!\n\e[0m", 2);
+	ft_putstr_fd("Usage: ./pipex <file_1> <cmd_1> <cmd_2> <....> <file_2>\n", 1);
+	ft_putstr_fd("		 ./pipex \"here_doc\" <RANDOM_WORD> <cmd_1> <cmd_2> <....> <file>\n", 1);
+	exit(EXIT_SUCCESS);
 }
