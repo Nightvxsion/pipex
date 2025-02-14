@@ -1,8 +1,1 @@
-Makefile
-a.txt
-b.txt
-gnl
-inc
-libft
-pipex
-srcs
+7
