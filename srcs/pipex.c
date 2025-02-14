@@ -6,7 +6,7 @@
 /*   By: marcgar2 <marcgar2@student.42madrid.org    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 22:06:30 by nightvision       #+#    #+#             */
-/*   Updated: 2025/02/11 07:56:40 by marcgar2         ###   ########.fr       */
+/*   Updated: 2025/02/14 21:33:16 by marcgar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	parents(char **argv, char **envp, int *fd)
 	output = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (output == -1)
 		disp_error();
-	dup2(fd[0], STDOUT_FILENO);
-	dup2(output, STDIN_FILENO);
+	dup2(fd[0], STDIN_FILENO);
+	dup2(output, STDOUT_FILENO);
 	close(fd[1]);
 	exec(argv[3], envp);
 }
