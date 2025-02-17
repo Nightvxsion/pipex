@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcgar2 <marcgar2@student.42madrid.org    +#+  +:+       +#+        */
+/*   By: marcgar2 <marcgar2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 23:41:10 by marcgar2          #+#    #+#             */
-/*   Updated: 2025/02/06 22:30:27 by marcgar2         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:29:28 by marcgar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ void	check_pipe(int argc, int fd[2]);
 void	childs(char **argv, char **envp, int *fd);
 void	parents(char **argv, char **envp, int *fd);
 
-//PIPEX BONUS
-void	child_bonus(char *argv, char **envp);
-void	here_doc(char *lim, int argc);
 
 //UTILS BONUS
 void	use(void);

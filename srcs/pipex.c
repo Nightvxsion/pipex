@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcgar2 <marcgar2@student.42madrid.org    +#+  +:+       +#+        */
+/*   By: marcgar2 <marcgar2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 22:06:30 by nightvision       #+#    #+#             */
-/*   Updated: 2025/02/14 21:33:16 by marcgar2         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:23:27 by marcgar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	childs(char **argv, char **envp, int *fd)
 
 	input = open(argv[1], O_RDONLY, 0777); //0777 es un permiso general en el que todo vale
 	if (input == -1)
+	{
 		disp_error();
+		ft_putstr_fd("failed input", 2);
+	}
 	dup2(fd[1], STDOUT_FILENO); //Recibe los datos de input (STDIN)
 	dup2(input, STDIN_FILENO); //Lo que haya en input se lo pasa al fd 1 (STDOUT)
 	close(fd[0]);
@@ -31,7 +34,10 @@ void	parents(char **argv, char **envp, int *fd)
 
 	output = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (output == -1)
+	{
 		disp_error();
+		ft_putstr_fd("failed output", 2);
+	}
 	dup2(fd[0], STDIN_FILENO);
 	dup2(output, STDOUT_FILENO);
 	close(fd[1]);
@@ -59,6 +65,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		ft_putstr_fd("\e[1;31mBAD ARGUMENT!\n\e[0m", 2);
 		ft_putstr_fd("Use: ./pipex <file1> <cmd1> <cmd2> <file2>\n", 1);
+		return (1);
 	}
 	return (0);
 }
