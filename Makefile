@@ -6,7 +6,7 @@
 #    By: marcgar2 <marcgar2@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/02 23:03:35 by marcgar2          #+#    #+#              #
-#    Updated: 2025/02/14 21:52:25 by marcgar2         ###   ########.fr        #
+#    Updated: 2025/02/21 23:46:16 by marcgar2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,37 +35,35 @@ OBJ = $(SRCS_OBJ:.c=.o) $(GNL_SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT_SRC)
-	@echo "$(BG)----------------------COMPILING $(NAME)----------------------${NC}"
+	@echo "$(BG)---------------------------------------------------------${NC}"
 	@echo "$(BG)													  "
-	@echo " ███████████  █████ ███████████  ██████████ █████ █████"
-	@echo "░░███░░░░░███░░███ ░░███░░░░░███░░███░░░░░█░░███ ░░███ "
-	@echo " ░███    ░███ ░███  ░███    ░███ ░███  █ ░  ░░███ ███ "
-	@echo " ░██████████  ░███  ░██████████  ░██████     ░░█████ "  
-	@echo " ░███░░░░░░   ░███  ░███░░░░░░   ░███░░█      ███░███ " 
-	@echo " ░███         ░███  ░███         ░███ ░   █  ███ ░░███ "
-	@echo " █████        █████ █████        ██████████ █████ █████ "
-	@echo " ░░░░░        ░░░░░ ░░░░░        ░░░░░░░░░░ ░░░░░ ░░░░░ ${NC}"
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT_SRC) -o $(NAME)
-	@echo "$(BG)[READY TO GO]${NC}"
+	@echo "                 ███████████  █████ ███████████  ██████████ █████ █████"
+	@echo "                ░░███░░░░░███░░███ ░░███░░░░░███░░███░░░░░█░░███ ░░███ "
+	@echo "                 ░███    ░███ ░███  ░███    ░███ ░███  █ ░  ░░███ ███ "
+	@echo "                 ░██████████  ░███  ░██████████  ░██████     ░░█████ "  
+	@echo "                 ░███░░░░░░   ░███  ░███░░░░░░   ░███░░█      ███░███ " 
+	@echo "                 ░███         ░███  ░███         ░███ ░   █  ███ ░░███ "
+	@echo "                 █████        █████ █████        ██████████ █████ █████ "
+	@echo "                 ░░░░░        ░░░░░ ░░░░░        ░░░░░░░░░░ ░░░░░ ░░░░░ ${NC}"
+	@echo "$(BG)----------------------------------------------------------${NC}"
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_SRC) -o $(NAME)
 
 $(LIBFT_SRC):
-	@echo "$(PRPL)----------------------COMPILING LIBFT----------------------${NC}"
-	make -C $(LIBFT_DIR) --no-print-directory
+	@echo "$(PRPL)COMPILING LIBFT...${NC}"
+	@make -C $(LIBFT_DIR) -s
+	@echo "$(PRPL)COMPILING LIBFT DONE!${NC}"
 
 %.o: %.c $(INC)
-	$(CC) $(CFLAGS) -c $< -o $@
-	@echo "$(BG)[OK]${NC}"
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@echo "$(BLD_RED)------------- Cleaning objects -------------${NC}"
-	$(RM) $(OBJ)
-	make -C $(LIBFT_DIR) clean
+	@$(RM) $(OBJ)
+	@make -C $(LIBFT_DIR) -s clean
 	@echo "$(BLD_RED)[DELETED OBJ]${NC}"
 
 fclean: clean
-	@echo "$(BLD_RED)------------- Cleaning binary -------------${NC}"
-	$(RM) $(NAME) $(NAME_BONUS)
-	make -C $(LIBFT_DIR) fclean
+	@$(RM) $(NAME) $(NAME_BONUS)
+	@make -C $(LIBFT_DIR) -s fclean
 	@echo "$(BLD_RED)[DELETED BINARY]${NC}"
 
 re: fclean all

@@ -66,16 +66,16 @@ BONUSOBJ = $(BONUSSRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ) $(INCLUDE)
-		$(LIB) $(NAME) $(OBJ)
+		@$(LIB) $(NAME) $(OBJ)
 
 bonus: $(OBJ) $(BONUSOBJ) $(INCLUDE)
-		$(LIB) $(NAME) $(BONUSOBJ) $(OBJ)
+		@$(LIB) $(NAME) $(BONUSOBJ) $(OBJ)
 
 clean:
-	$(RM) $(OBJ) $(BONUSOBJ)
+	@$(RM) $(OBJ) $(BONUSOBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 

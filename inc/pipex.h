@@ -6,7 +6,7 @@
 /*   By: marcgar2 <marcgar2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 23:41:10 by marcgar2          #+#    #+#             */
-/*   Updated: 2025/02/17 14:29:28 by marcgar2         ###   ########.fr       */
+/*   Updated: 2025/02/21 22:41:10 by marcgar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 char	*look_for_path(char *cmd, char **envp);
 void	disp_error(void);
 void	exec(char *argv, char **envp);
-void	check_pipe(int argc, int fd[2]);
+void	empty_cmd(char **command);
 
 //PIPEX
 void	childs(char **argv, char **envp, int *fd);

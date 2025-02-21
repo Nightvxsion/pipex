@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcgar2 <marcgar2@student.42madrid.org    +#+  +:+       +#+        */
+/*   By: marcgar2 <marcgar2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 22:19:07 by nightvision       #+#    #+#             */
-/*   Updated: 2025/02/11 08:04:07 by marcgar2         ###   ########.fr       */
+/*   Updated: 2025/02/21 23:27:40 by marcgar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,29 +55,30 @@ void	exec(char *argv, char **envp)
 
 	i = -1;
 	command = ft_split(argv, ' '); //Hace un split para dividir los argumentos del comando
+	empty_cmd(command);
 	path = look_for_path(command[0], envp); //Comprobar la existencia del comando de la primera pos de envp
 	if (!path)
 	{
 		while(command[++i])
 			free(command[i]);
 		free(command);
-		disp_error();
+		exit(127);
 	}
 	if (execve(path, command, envp) == -1) //Si en el momento de la ejecucion del PATH, comando y ENVP hay un err
-		disp_error();
+	{
+		perror("execve");
+		exit(127);
+	}
 }
 
-void	check_pipe(int argc, int fd[2])
+void	empty_cmd(char **command)
 {
-	if (argc < 6) //Si hay menos de 6 argumentos o esta "mal usado"
+	if (!command || !command[0])
 	{
-		use();
-		exit(EXIT_FAILURE);
-	}
-	if (pipe(fd) == -1) //SI la pipe encuentra un error
-	{
-		disp_error();
-		exit(EXIT_FAILURE);
+		ft_putstr_fd("Invalid command\n", 2);
+		if (command)
+			free(command);
+		exit(127);
 	}
 }
 
