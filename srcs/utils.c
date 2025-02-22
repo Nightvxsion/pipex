@@ -6,7 +6,7 @@
 /*   By: marcgar2 <marcgar2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 22:19:07 by nightvision       #+#    #+#             */
-/*   Updated: 2025/02/21 23:27:40 by marcgar2         ###   ########.fr       */
+/*   Updated: 2025/02/22 11:44:43 by marcgar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,37 @@
 
 char	*look_for_path(char *cmd, char **envp)
 {
-	char	**sub_paths; //Haremos split para dividir los diferentes path's
-	char	*def_path; //Path definitivo cuando hagamos strjoin del path verdadero
+	char	**sub_paths;
+	char	*def_path;
 	int		i;
-	char	*path_slash; //Solo haremos un strjoin del path verdadero con un '/'
+	char	*path_slash;
 
 	i = 0;
-	while(ft_strnstr(envp[i], "PATH", 4) == 0) //Mientras que exista una palabra llamada PATH ( == 0, is true)
+	while(ft_strnstr(envp[i], "PATH", 4) == 0)
 		i++;
-	sub_paths = ft_split(envp[i] + 5, ':'); //Se pone : para establecer el directorio del path
+	sub_paths = ft_split(envp[i] + 5, ':');
 	i = 0;
 	while (sub_paths[i])
 	{
-		path_slash = ft_strjoin(sub_paths[i], "/"); //Lo que encuentre lo une con una '/'
-		def_path = ft_strjoin(path_slash, cmd); //Lo que encuentre lo une con el comando
-		free(path_slash); //Liberamos memoria del directorio
-		if (access(def_path, F_OK) == 0) //Si el path simplemente existe
+		path_slash = ft_strjoin(sub_paths[i], "/");
+		def_path = ft_strjoin(path_slash, cmd);
+		free(path_slash);
+		if (access(def_path, F_OK) == 0)
 			return (def_path);
 		free(def_path);
 		i++;
 	}
 	i = -1;
-	while(sub_paths[++i]) //Iteramos sobre toda la matriz de numeros DEL SPLIT
-		free(sub_paths[i]); // Eliminamos 1 a 1 los numeros de dentro
-	free(sub_paths); // Liberamos la matriz/variable principal
+	while (sub_paths[++i])
+		free(sub_paths[i]);
+	free(sub_paths);
 	return (0);
 }
 
 void	disp_error(void)
 {
-	perror("\e[1;31mERROR"); //Mensaje de error simple
-	exit(EXIT_FAILURE); // Return -1
+	perror("\e[1;31mERROR");
+	exit(EXIT_FAILURE);
 }
 
 void	exec(char *argv, char **envp)
@@ -54,9 +54,9 @@ void	exec(char *argv, char **envp)
 	int		i;
 
 	i = -1;
-	command = ft_split(argv, ' '); //Hace un split para dividir los argumentos del comando
+	command = ft_split(argv, ' ');
 	empty_cmd(command);
-	path = look_for_path(command[0], envp); //Comprobar la existencia del comando de la primera pos de envp
+	path = look_for_path(command[0], envp);
 	if (!path)
 	{
 		while(command[++i])
@@ -64,7 +64,7 @@ void	exec(char *argv, char **envp)
 		free(command);
 		exit(127);
 	}
-	if (execve(path, command, envp) == -1) //Si en el momento de la ejecucion del PATH, comando y ENVP hay un err
+	if (execve(path, command, envp) == -1)
 	{
 		perror("execve");
 		exit(127);

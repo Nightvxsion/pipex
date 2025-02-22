@@ -6,7 +6,7 @@
 /*   By: marcgar2 <marcgar2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 22:06:30 by nightvision       #+#    #+#             */
-/*   Updated: 2025/02/21 23:29:30 by marcgar2         ###   ########.fr       */
+/*   Updated: 2025/02/22 11:56:43 by marcgar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ void	childs(char **argv, char **envp, int *fd)
 {
 	int 	input;
 
-	input = open(argv[1], O_RDONLY, 0777); //0777 es un permiso general en el que todo vale
+	input = open(argv[1], O_RDONLY, 0777);
 	if (input == -1)
 		disp_error();
-	dup2(fd[1], STDOUT_FILENO); //Recibe los datos de input (STDIN)
-	dup2(input, STDIN_FILENO); //Lo que haya en input se lo pasa al fd 1 (STDOUT)
+	dup2(fd[1], STDOUT_FILENO);
+	dup2(input, STDIN_FILENO);
 	close(input);
 	close(fd[0]);
 	close(fd[1]);
-	exec(argv[2], envp); //Ejecuta el argumento 2 de parametro y lo compara con las ENVP
+	exec(argv[2], envp);
 	exit(127);
 }
 
@@ -46,8 +46,8 @@ void	parents(char **argv, char **envp, int *fd)
 
 int	main(int argc, char **argv, char **envp)
 {
-	int		fd[2]; //FD al que actua
-	pid_t	pid_proc; //PID del proceso
+	int		fd[2];
+	pid_t	pid_proc;
 
 	if (argc != 5)
 	{
@@ -55,16 +55,18 @@ int	main(int argc, char **argv, char **envp)
 		ft_putstr_fd("Use: ./pipex <file1> <cmd1> <cmd2> <file2>\n", 1);
 		return (1);
 	}
-	if (pipe(fd) == -1) //Si al hacer la pipe del fd da error
+	if (pipe(fd) == -1)
 		disp_error();
-	pid_proc = fork(); //Hacer el proceso hijo
+	pid_proc = fork();
 	if (pid_proc == -1)
 		disp_error();
 	if (pid_proc == 0)
 		childs(argv, envp, fd);
 	else
 	{
+		close(fd[1]);
 		waitpid(pid_proc, NULL, 0);
-		parents(argv, envp, fd);	
+		parents(argv, envp, fd);
+		close(fd[0]);
 	}
 }
