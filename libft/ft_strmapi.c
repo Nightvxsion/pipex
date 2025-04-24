@@ -12,7 +12,6 @@
 
 #include "libft.h"
 
-
 char	*ft_strmapi(char *s, char (*f)(unsigned int, char))
 {
 	int		i;

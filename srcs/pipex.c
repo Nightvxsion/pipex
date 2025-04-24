@@ -6,7 +6,7 @@
 /*   By: marcgar2 <marcgar2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 22:06:30 by nightvision       #+#    #+#             */
-/*   Updated: 2025/02/22 11:56:43 by marcgar2         ###   ########.fr       */
+/*   Updated: 2025/04/24 15:34:34 by marcgar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	childs(char **argv, char **envp, int *fd)
 {
-	int 	input;
+	int	input;
 
 	input = open(argv[1], O_RDONLY, 0777);
 	if (input == -1)

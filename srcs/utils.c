@@ -6,7 +6,7 @@
 /*   By: marcgar2 <marcgar2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 22:19:07 by nightvision       #+#    #+#             */
-/*   Updated: 2025/02/22 11:44:43 by marcgar2         ###   ########.fr       */
+/*   Updated: 2025/04/24 15:35:40 by marcgar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*look_for_path(char *cmd, char **envp)
 	char	*path_slash;
 
 	i = 0;
-	while(ft_strnstr(envp[i], "PATH", 4) == 0)
+	while (ft_strnstr(envp[i], "PATH", 4) == 0)
 		i++;
 	sub_paths = ft_split(envp[i] + 5, ':');
 	i = 0;
@@ -49,7 +49,7 @@ void	disp_error(void)
 
 void	exec(char *argv, char **envp)
 {
-	char 	**command;
+	char	**command;
 	char	*path;
 	int		i;
 
@@ -59,7 +59,7 @@ void	exec(char *argv, char **envp)
 	path = look_for_path(command[0], envp);
 	if (!path)
 	{
-		while(command[++i])
+		while (command[++i])
 			free(command[i]);
 		free(command);
 		exit(127);
@@ -85,7 +85,6 @@ void	empty_cmd(char **command)
 void	use(void)
 {
 	ft_putstr_fd("\e[1;31mBAD ARGUMENT!\n\e[0m", 2);
-	ft_putstr_fd("Usage: ./pipex <file_1> <cmd_1> <cmd_2> <....> <file_2>\n", 1);
-	ft_putstr_fd("		 ./pipex \"here_doc\" <RANDOM_WORD> <cmd_1> <cmd_2> <....> <file>\n", 1);
+	ft_putstr_fd("Usage: ./pipex <file_1> <cmd_1> <cmd_2> <file_2>\n", 1);
 	exit(EXIT_SUCCESS);
 }
