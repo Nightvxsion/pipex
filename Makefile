@@ -3,15 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marcgar2 <marcgar2@student.42madrid.com    +#+  +:+       +#+         #
+#    By: marcgar2 <marcgar2@student.42madrid.org    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/02 23:03:35 by marcgar2          #+#    #+#              #
-#    Updated: 2025/02/22 11:59:37 by marcgar2         ###   ########.fr        #
+#    Updated: 2025/04/25 08:41:55 by marcgar2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
-
 CC = cc
 CFLAGS = -g -Wall -Werror -Wextra
 RM = rm -f
@@ -68,6 +67,4 @@ fclean: clean
 
 re: fclean all
 
-re_b: fclean bonus
-
-.PHONY: all bonus clean fclean re re_b
+.PHONY: all bonus clean fclean re
