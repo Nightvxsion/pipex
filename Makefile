@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marcgar2 <marcgar2@student.42madrid.org    +#+  +:+       +#+         #
+#    By: marcgar2 <marcgar2@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/02 23:03:35 by marcgar2          #+#    #+#              #
-#    Updated: 2025/04/25 08:41:55 by marcgar2         ###   ########.fr        #
+#    Updated: 2025/04/30 17:37:25 by marcgar2         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ CC = cc
 CFLAGS = -g -Wall -Werror -Wextra
 RM = rm -f
 LIBFT_DIR = ./libft
-GNL_DIR = ./gnl
 SRC_DIR = ./srcs
 INC = ./inc/pipex.h
 BG = \e[1;32m		# BOLD GREEN
@@ -27,9 +26,10 @@ GOLD = \e[1;93m		# GOLD
 LIBFT_SRC = $(LIBFT_DIR)/libft.a
 
 SRCS_OBJ = $(SRC_DIR)/pipex.c \
-		   $(SRC_DIR)/utils.c
+		   $(SRC_DIR)/utils.c \
+		   $(SRC_DIR)/error.c
 
-OBJ = $(SRCS_OBJ:.c=.o) $(GNL_SRC:.c=.o)
+OBJ = $(SRCS_OBJ:.c=.o)
 
 all: $(NAME)
 
