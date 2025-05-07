@@ -6,7 +6,7 @@
 /*   By: marcgar2 <marcgar2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 16:42:03 by marcgar2          #+#    #+#             */
-/*   Updated: 2025/04/30 17:33:15 by marcgar2         ###   ########.fr       */
+/*   Updated: 2025/05/07 16:22:58 by marcgar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ void	disp_error(char *msg, int errno)
 {
 	perror("\e[1;31mERROR");
 	if (msg)
-	{
 		perror(msg);
-	}
 	exit(errno);
 }
 

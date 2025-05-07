@@ -6,7 +6,7 @@
 /*   By: marcgar2 <marcgar2@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 22:06:30 by nightvision       #+#    #+#             */
-/*   Updated: 2025/04/30 17:33:49 by marcgar2         ###   ########.fr       */
+/*   Updated: 2025/05/07 16:23:31 by marcgar2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	chararr_print(char **argv)
 
 void	first_child(char **argv, char **envp, int *fd)
 {
-	int input;
+	int	input;
 
 	input = open(argv[1], O_RDONLY, 0777);
 	if (input == -1)
@@ -37,9 +37,9 @@ void	first_child(char **argv, char **envp, int *fd)
 	exit(127);
 }
 
-void second_child(char **argv, char **envp, int *fd)
+void	second_child(char **argv, char **envp, int *fd)
 {
-	int output;
+	int	output;
 
 	output = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (output == -1)
@@ -53,7 +53,7 @@ void second_child(char **argv, char **envp, int *fd)
 	exit(127);
 }
 
-void parent_proc(int *fd, pid_t *pid, int *status)
+void	parent_proc(int *fd, pid_t *pid, int *status)
 {
 	close(fd[1]);
 	close(fd[0]);
